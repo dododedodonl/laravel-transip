@@ -12,6 +12,7 @@
 namespace TransIP\Laravel;
 
 use TransIP\Client;
+use Illuminate\Support\Arr;
 
 /**
  * @author Hidde Beydals <hello@hidde.co>
@@ -44,7 +45,7 @@ class TransIPFactory
     protected function getConfig(array $config)
     {
         if (0 === count(array_diff(['username', 'private_key'], array_keys($config)))) {
-            return array_only($config, ['username', 'private_key', 'mode', 'endpoint']);
+            return Arr::only($config, ['username', 'private_key', 'mode', 'endpoint']);
         }
 
         throw new \InvalidArgumentException('The TransIP client requires configuration.');
